@@ -1,0 +1,111 @@
+/* 
+* TODO:
+* Decide on global link styling
+* Choose between two options
+*/
+/* :root { */
+/*     --background-color: #ffffff; */
+/*     --text-color: #111111; */
+/*     --link-color: #0000ee; */
+/* } */
+
+/* @media (prefers-color-scheme: dark) { */
+/*     :root { */
+/*         --background-color: #121212; */
+/*         --text-color: #e0e0e0; */
+/*         --link-color: #b580ff; */
+/*     } */
+/* } */
+
+:root {
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --link-color: #b580ff;
+}
+
+body {
+    max-width: 900px;
+    margin: auto;
+    
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    font-size-adjust: 0.54;
+}
+
+a {
+    color: var(--link-color);
+}
+
+a.project-page-link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a.project-page-link:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.description .summary {
+    margin-left: 25px;
+}
+
+/* PROJECTS LIST PAGE */
+
+.project .title {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.project .title * {
+    margin: 0
+}
+
+.project .project-links {
+    margin: 2px 0px 4px 0px;
+    display: flex;
+    gap: 15px;
+}
+
+/* PROJECTS DETAILS PAGE */
+
+.project-details {
+    margin: 20px 0px;
+}
+
+.project-details .title {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.project-details .title * {
+    margin: 0
+}
+
+.project-details #project-type {
+    font-style: italic;
+}
+
+img {
+    max-width: 100%;
+}
+
+.demo-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+.demo-figure img {
+    width: 80%;
+}
+.demo-figure figcaption {
+    font-style: italic; 
+}
+
