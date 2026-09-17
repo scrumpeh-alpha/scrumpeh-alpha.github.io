@@ -16,44 +16,41 @@ class MathInlineProcessor(InlineProcessor):
     def __init__(self, pattern: str, display: bool = False) -> None:
         super().__init__(pattern)
         self.display: bool = display
+        self.matched: bool = False  # Track if this processor matched anything
 
     @override
     def handleMatch(
         self, m: re.Match[str], data: str
     ) -> tuple[etree.Element | None, int, int]:
+        self.matched = True  # Set flag when a match occurs
         math_content: str = m.group(1).strip()
         span: etree.Element = etree.Element("span")
 
         if self.display:
             span.set("class", "katex-display")
-            span.text = (
-                f"$${math_content}$$"  # Preserve $$ delimiters for KaTeX auto-render
-            )
+            span.text = f"$${math_content}$$"
         else:
             span.set("class", "katex-inline")
-            span.text = (
-                f"${math_content}$"  # Preserve $ delimiters for KaTeX auto-render
-            )
+            span.text = f"${math_content}$"
 
         return span, m.start(0), m.end(0)
 
 
 class KaTeXExtension(Extension):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.display_proc = MathInlineProcessor(r"\$\$(.*?)\$\$", display=True)
+        self.inline_proc = MathInlineProcessor(r"\$([^\$\s]+)\$", display=False)
+
     @override
     def extendMarkdown(self, md: markdown.Markdown) -> None:
-        DISPLAY_MATH_RE: str = r"\$\$(.*?)\$\$"
+        md.inlinePatterns.register(self.display_proc, "katex-display", 175)
+        md.inlinePatterns.register(self.inline_proc, "katex-inline", 170)
 
-        # Priority 175 ensures display math ($$) is processed BEFORE inline math ($).
-        md.inlinePatterns.register(
-            MathInlineProcessor(DISPLAY_MATH_RE, display=True), "katex-display", 175
-        )
-
-        INLINE_MATH_RE: str = r"\$([^\$\s]+)\$"
-
-        # Register the inline math processor at priority 170.
-        md.inlinePatterns.register(
-            MathInlineProcessor(INLINE_MATH_RE, display=False), "katex-inline", 170
-        )
+    @property
+    def has_math(self) -> bool:
+        """Returns True if either math processor matched anything during markdown conversion."""
+        return self.display_proc.matched or self.inline_proc.matched
 
 
 def parse_markdown_with_meta(md_content: str):
@@ -62,10 +59,11 @@ def parse_markdown_with_meta(md_content: str):
     raw_body = post.content
 
     # Convert Markdown body to HTML with KaTeX extension included
-    md = markdown.Markdown(extensions=["fenced_code", "tables", KaTeXExtension()])
+    katex_ext = KaTeXExtension()
+    md = markdown.Markdown(extensions=["fenced_code", "tables", katex_ext])
     html_body = md.convert(raw_body)
 
-    return metadata, html_body
+    return metadata, html_body, katex_ext.has_math
 
 
 def main() -> int:
@@ -99,10 +97,11 @@ def main() -> int:
     for md_file in md_files:
         document = md_file.read_text(encoding="utf-8")
         
-        meta, html = parse_markdown_with_meta(document)
+        meta, html, has_math = parse_markdown_with_meta(document)
 
         final_html = template.render(
             body=html,
+            has_math=has_math,
             **meta,
         )
         

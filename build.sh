@@ -10,6 +10,6 @@ rm -rf build/blogs/
 
 venv/bin/python scripts/mdparser.py src/blogs/ \
     --out build/blogs/ \
-    --template templates/template.html
+    --template templates/blog-template.html
 
 echo "Build successful!"
