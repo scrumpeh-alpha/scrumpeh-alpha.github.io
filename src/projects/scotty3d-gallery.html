@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Scotty3D Gallery</title>
+        <link rel="stylesheet" href="/css/index.css" class="style" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+
+    </head>
+
+    <body>
+        <header>
+            <h3>scrumpeh</h3>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/projects/">Projects</a>
+            </nav>
+        </header>
+
+        <section class="heading">
+            <h1>Scotty3D Gallery</h1>
+        </section>
+
+        <main>
+            <article>
+                <section>
+                    <h2>Background Info</h2>
+                    <p>
+                        This is my own implementation of <a href="https://github.com/CMU-Graphics/Scotty3D/tree/48e8399714e1f3538996eb983116ff9199bbed90">Scotty3D</a>, a 3D graphics software package, as part of 
+                        self-studying introductory computer graphics. For studying, I followed the
+                        lectures from CMU 15-462's <a href="https://15462.courses.cs.cmu.edu/fall2020/home">Fall 2020</a>
+                        offering while completing the assignments from the <a href="https://15362.courses.cs.cmu.edu/spring2026/">Spring 2026</a>
+                        version. To maintain academic integrity, the source code is kept private, 
+                        but I have shared some of my renders below.
+                    </p>
+                    <p>
+                        The assignment is divided into four main parts:
+                        <ul>
+                            <li>
+                                <b>A1 — Rasterizer:</b> CPU rasterizer (mostly) from scratch, with
+                                features including supersampling, perspective-correct interpolation, 
+                                mipmapping, and so on.
+                            </li>
+                            <li>
+                                <b>A2 — Mesh Editing:</b> Mesh-modeling operations with a <a href="https://en.wikipedia.org/wiki/Doubly_connected_edge_list">half-edge data structure</a>, both local operations (edge flips, splits, etc.)
+                                and global operations (triangulation, subdivision, etc.)
+                            </li>
+                            <li>
+                                <b>A3 — Path Tracing:</b> Physically-based CPU path tracer (mostly) from
+                                scratch, with features including BVH acceleration, BSDF material modeling,
+                                environment light-mapping, and so on.
+                            </li>
+                            <li>
+                                <b>A4 — Animation:</b> <em>In Progress</em>
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>A1: Rasterizer</h2>
+                    <figure>
+                        <img src="/assets/scotty3d/A1-T5-smooth-correct-triangles.png" alt="Rasterize smooth and perspective-correct cubes">
+                        <figcaption>Rasterize smooth and perspective-correct cubes</figcaption>
+                    </figure>
+                </section>
+
+                <section>
+                    <h2>A3: Path Tracing</h2>
+
+                    <h3>Materials & Global Illumination Showcase</h3>
+                    <figure>
+                        <img src="/assets/scotty3d/A3-T6-cbox-256spp.png" alt="CBox: Mirror, Glass Spheres using Area Light Importance Sampling">
+                        <figcaption>Cornell Box: Mirror, Glass Spheres using Area Light Importance Sampling (256 spp)</figcaption>
+                    </figure>
+                    <br>
+                    <figure>
+                        <img src="/assets/scotty3d/A3-T7-cow-ennis-512spp.png" alt="Cow: Ennis Environment Light">
+                        <figcaption>Cow: Ennis Environment Light using Importance Sampling (512 spp)</figcaption>
+                    </figure>
+
+                    <h3>Spatial Acceleration & Debug Visualizations</h3>
+                    <figure>
+                        <img src="/assets/scotty3d/A3-T3-bunny-bvh.png" alt="Stanford Bunny BVH">
+                        <figcaption>Stanford Bunny BVH</figcaption>
+                    </figure>
+                    <br>
+                    <figure>
+                        <img src="/assets/scotty3d/A3-T2-cbox-normals.png" alt="Cornell Box Normals">
+                        <figcaption>Cornell Box Normals</figcaption>
+                    </figure>
+                    <br>
+                    <figure>
+                        <img src="/assets/scotty3d/A3-T2-cow-empty-normals.png" alt="Cow Normals">
+                        <figcaption>Cow Normals</figcaption>
+                    </figure>
+
+                </section>
+            </article>
+        </main>
+
+        <footer></footer>
+    </body>
+</html>
