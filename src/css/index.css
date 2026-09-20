@@ -44,17 +44,14 @@ body {
 
 a {
     color: var(--link-color);
-}
-
-a.project-page-link {
-    color: var(--text-color);
     text-decoration: none;
 }
 
-a.project-page-link:hover {
-    color: var(--text-color);
+a:hover {
+    color: var(--link-color);
     text-decoration: underline;
 }
+
 
 .description .summary {
     margin-left: 25px;
