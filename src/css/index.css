@@ -20,19 +20,26 @@
 :root {
     --background-color: #121212;
     --text-color: #e0e0e0;
-    --link-color: #b580ff;
+    --link-color: #619eff;
+
+    /* Some alternative colors */
+    /* --link-color: #b580ff; */
+    /* --link-color: #66a1ff; */
+    /* --link-color: #9f75ff; */
 }
 
 body {
     max-width: 900px;
     margin: auto;
+    padding: 1.5rem 1rem;
     
     background-color: var(--background-color);
     color: var(--text-color);
 
-    font-family: "Times New Roman", Times, serif;
-    font-size: 12pt;
-    font-size-adjust: 0.54;
+    font-family: "Noto Serif", "Cambria", Times, serif;
+    font-size: 1rem;
+    font-size-adjust: ex-height 0.54;
+    line-height: 1.6;
 }
 
 a {
@@ -102,9 +109,7 @@ figure {
     text-align: center;
     gap: 10px;
 }
-/* figure img { */
-/*     width: 80%; */
-/* } */
+
 figure figcaption {
     font-style: italic; 
 }
